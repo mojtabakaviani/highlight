@@ -1,0 +1,70 @@
+{
+  "name": "vscode-sql-highlight",
+  "displayName": "SQL Highlight",
+  "icon": "images/logo.png",
+  "description": "Syntax highlighting for inline sql",
+  "version": "1.0.1",
+  "license": "MIT",
+  "publisher": "mojtabakaviani",
+  "engines": {
+    "vscode": "^1.63.0"
+  },
+  "keywords": [
+    "sql"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mojtabakaviani/highlight.git"
+  },
+  "catecsharpries": [
+    "Programming Languages"
+  ],
+  "scripts": {
+    "pack": "vsce package"
+  },
+  "contributes": {
+    "grammars": [
+      {
+        "path": "./syntaxes/others-strings.json",
+        "scopeName": "inline-sql.injection",
+        "injectTo": [
+          "source.python",
+          "source.go",
+          "source.java",
+          "source.ruby",
+          "source.cs",
+          "source.js",
+          "source.ts",
+          "source.vue",
+          "source.svelte",
+          "source.tsx",
+          "source.rust",
+          "text.html.php"
+        ],
+        "embeddedLanguages": {
+          "meta.embedded.sql": "sql"
+        }
+      },
+      {
+        "path": "./syntaxes/php-multiline.json",
+        "scopeName": "php-multiline.injection",
+        "injectTo": [
+          "text.html.php"
+        ],
+        "embeddedLanguages": {
+          "meta.embedded.sql": "sql"
+        }
+      },
+      {
+        "path": "./syntaxes/csharp-multiline.json",
+        "scopeName": "csharp-multiline.injection",
+        "injectTo": [
+          "source.cs"
+        ],
+        "embeddedLanguages": {
+          "meta.embedded.sql": "sql"
+        }
+      }
+    ]
+  }
+}

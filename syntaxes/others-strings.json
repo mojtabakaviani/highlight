@@ -1,0 +1,140 @@
+{
+    "scopeName": "inline-sql.injection",
+    "fileTypes": [
+        "py",
+        "go",
+        "js",
+        "jsx",
+        "ts",
+        "tsx",
+        "vue",
+        "svelte",
+        "java",
+        "rb",
+        "cs",
+        "rs",
+        "php"
+    ],
+    "injectionSelector": [
+        "text.html.php",
+        "L:source -comment -string"
+    ],
+    "patterns": [
+        {
+            "comment": "Rust multi-line raw strings",
+            "begin": "(b?r)(#*)(\")",
+            "beginCaptures": {
+                "1": {
+                    "name": "string.quoted.byte.raw.rust"
+                },
+                "2": {
+                    "name": "string.raw.rust"
+                },
+                "3": {
+                    "name": "string.rust"
+                },
+                "4": {
+                    "name": "comment.sql"
+                }
+            },
+            "end": "(\")(\\2)",
+            "endCaptures": {
+                "1": {
+                    "name": "string.rust"
+                },
+                "2": {
+                    "name": "string.raw.rust"
+                }
+            },
+            "patterns": [
+                {
+                    "include": "source.sql"
+                }
+            ]
+        },
+        {
+            "begin": "(\")",
+            "beginCaptures": {
+                "2": {
+                    "name": "comment.sql"
+                }
+            },
+            "end": "(\")",
+            "patterns": [
+                {
+                    "include": "source.sql"
+                }
+            ]
+        },
+        {
+            "begin": "(\")((SELECT|select) |(INSERT INTO|insert into) |(DELETE|delete) |(UPDATE|update) |(CREATE TABLE,create table) |(CREATE INDEX,create index) )",
+            "beginCaptures": {
+                "2": {
+                    "name": "keyword.sql"
+                }
+            },
+            "end": "(\")",
+            "patterns": [
+                {
+                    "include": "source.sql"
+                }
+            ]
+        },
+        {
+            "begin": "(`)",
+            "beginCaptures": {
+                "2": {
+                    "name": "comment.sql"
+                }
+            },
+            "end": "(`)",
+            "patterns": [
+                {
+                    "include": "source.sql"
+                }
+            ]
+        },
+        {
+            "begin": "(`)((SELECT|select) |(INSERT INTO|insert into) |(DELETE|delete) |(UPDATE|update) |(CREATE TABLE,create table) |(CREATE INDEX,create index))",
+            "beginCaptures": {
+                "2": {
+                    "name": "keyword.sql"
+                }
+            },
+            "end": "(`)",
+            "patterns": [
+                {
+                    "include": "source.sql"
+                }
+            ]
+        },
+        {
+            "begin": "(\"\"\")",
+            "beginCaptures": {
+                "2": {
+                    "name": "comment.sql"
+                }
+            },
+            "end": "(\"\"\")",
+            "patterns": [
+                {
+                    "include": "source.sql"
+                }
+            ]
+        },
+        {
+            "begin": "(\"\"\")((SELECT|select) |(INSERT INTO|insert into) |(DELETE|delete) |(UPDATE|update) |(CREATE TABLE,create table) |(CREATE INDEX,create index))",
+            "beginCaptures": {
+                "2": {
+                    "name": "keyword.sql"
+                }
+            },
+            "end": "(\"\"\")",
+            "patterns": [
+                {
+                    "include": "source.sql"
+                }
+            ]
+        }
+    ]
+}
